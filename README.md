@@ -85,3 +85,48 @@ README.md src
 ➜  git-ops-basic-demo git:(main) ✗ ls src
 app.py           README.md        requirements.txt
 ```
+
+
+After adding Dockerfile to our src build
+```bash
+
+
+
+➜  src git:(main) docker build -t streamlitllmtest .
+[+] Building 1.0s (11/11) FINISHED                                                                                                      docker:rancher-desktop
+ => [internal] load build definition from Dockerfile                                                                                                      0.0s
+ => => transferring dockerfile: 234B                                                                                                                      0.0s
+ => [internal] load metadata for docker.io/library/python:alpine                                                                                          0.9s
+ => [internal] load .dockerignore                                                                                                                         0.0s
+ => => transferring context: 2B                                                                                                                           0.0s
+ => [1/6] FROM docker.io/library/python:alpine@sha256:26730869004e2b9c4b9ad09cab8625e81d256d1ce97e72df5520e806b1709f92                                    0.0s
+ => => resolve docker.io/library/python:alpine@sha256:26730869004e2b9c4b9ad09cab8625e81d256d1ce97e72df5520e806b1709f92                                    0.0s
+ => [internal] load build context                                                                                                                         0.0s
+ => => transferring context: 1.07kB                                                                                                                       0.0s
+ => CACHED [2/6] RUN apk upgrade --no-cache                                                                                                               0.0s
+ => CACHED [3/6] COPY requirements.txt /tmp                                                                                                               0.0s
+ => CACHED [4/6] RUN pip install -r /tmp/requirements.txt                                                                                                 0.0s
+ => CACHED [5/6] WORKDIR /src/                                                                                                                            0.0s
+ => [6/6] COPY app.py /src/                                                                                                                               0.0s
+ => exporting to image                                                                                                                                    0.1s
+ => => exporting layers                                                                                                                                   0.0s
+ => => exporting manifest sha256:c4c018d5b29175870ba68cf5c4ee49c88aec1b115e39cd0b0000b6e93e0a8e17                                                         0.0s
+ => => exporting config sha256:d473dfcfc359b522b48da4986408dd8f48d2af539f57368eb1f090113728e48f                                                           0.0s
+ => => exporting attestation manifest sha256:e0e452f7139650ea73abc2ef775c9c6d32726251de8f199fda9506d694dde5c2                                             0.0s
+ => => exporting manifest list sha256:31f4902a6c1f80b3abc3da53fc55a0eb9546f47cc5a83aa38b458d0ff5eaa9a6                                                    0.0s
+ => => naming to docker.io/library/streamlitllmtest:latest                                                                                                0.0s
+ => => unpacking to docker.io/library/streamlitllmtest:latest                                                                                             0.0s
+```
+
+TEST running it:
+```bash
+➜  src git:(main) docker run streamlitllmtest
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+2026-07-23 15:20:03.016 Uvicorn server started on :::8501
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+```
