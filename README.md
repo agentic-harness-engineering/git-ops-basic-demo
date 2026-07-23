@@ -7,6 +7,7 @@ https://github.com/agentic-harness-engineering/basic-llm-chatbot-local/
 Docker -> k8s -> helm -> argocd to demo gitops deployment from version control ( github/gitlab/bitbucket ).
 We will use a local docker registry server deployed to the same k8s. In normal CICD piepline, our dockerfile builds the image and pushed to the enterprises docker registry, whereever that may be. 
 
+# Our k8s env
 Our demo environment is a k3s server, https://k3s.io/ deployed to a laptop. 
 Anything else can be used. Rancher-desktop for a local k8s environment https://rancherdesktop.io/ or microk8s https://canonical.com/microk8s
 or minikube https://minikube.sigs.k8s.io/
@@ -18,6 +19,7 @@ NAME        STATUS   ROLES           AGE   VERSION
 skilganon   Ready    control-plane   77d   v1.35.4+k3s1
 ```
 
+# HELM
 Helm is a Kubernetes Package Manager.  => https://helm.sh/
 https://helm.sh/docs/intro/install
 
@@ -43,4 +45,26 @@ argo/argocd-image-updater       1.2.4           v1.2.2          A Helm chart for
 argo/argocd-notifications       1.8.1           v1.2.1          A Helm chart for ArgoCD notifications, an add-o...
 bitnami/argo-cd                 11.0.0          3.1.1           Argo CD is a continuous delivery tool for Kuber...
 bitnami/argo-workflows          13.0.6          3.7.1           Argo Workflows is meant to orchestrate Kubernet...
+```
+
+# ARGO CD
+We can the install argocd,
+
+```bash
+helm upgrade --install argocd --namespace argocd --create-namespace argo/argo-cd
+```
+To get the configuration options for argocd 
+
+```bash
+helm show values argo/argo-cd
+```
+piping these to a file, you can then store and deploy from version control if need be
+
+```bash
+helm show values argo/argo-cd > argocd-values.yaml
+```
+you can then edit, save and deploy using custom config:
+
+```bash
+helm upgrade --install argocd --namespace argocd --create-namespace argo/argo-cd -f argocd-values.yaml
 ```
