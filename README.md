@@ -68,3 +68,20 @@ you can then edit, save and deploy using custom config:
 ```bash
 helm upgrade --install argocd --namespace argocd --create-namespace argo/argo-cd -f argocd-values.yaml
 ```
+
+
+
+```bash
+➜  git-ops-basic-demo git:(main) git submodule add https://github.com/agentic-harness-engineering/basic-llm-chatbot-local/ src
+Cloning into 'agentic-harness-engineering/git-ops-basic-demo/src'...
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 11 (delta 1), reused 8 (delta 1), pack-reused 0 (from 0)
+Receiving objects: 100% (11/11), done.
+Resolving deltas: 100% (1/1), done.
+➜  git-ops-basic-demo git:(main) ✗ ls
+README.md src
+➜  git-ops-basic-demo git:(main) ✗ ls src
+app.py           README.md        requirements.txt
+```
