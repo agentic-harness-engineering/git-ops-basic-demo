@@ -4,17 +4,19 @@
 We will use this repo to dockerize the app from 
 https://github.com/agentic-harness-engineering/basic-llm-chatbot-local/
 
-Docker -> k8s -> helm -> argocd to demo gitops deployment from registry.
-We will use a local docker registry server deployed to the same k8s. In normal CICD piepline, our dockerfile builds the image and pushed to the enterprise registry
-
-git@github.com:agentic-harness-engineering/git-ops-basic-demo.git
-
-
+Docker -> k8s -> helm -> argocd to demo gitops deployment from version control ( github/gitlab/bitbucket ).
+We will use a local docker registry server deployed to the same k8s. In normal CICD piepline, our dockerfile builds the image and pushed to the enterprises docker registry, whereever that may be. 
 
 Our demo environment is a k3s server, https://k3s.io/ deployed to a laptop. 
 Anything else can be used. Rancher-desktop for a local k8s environment https://rancherdesktop.io/ or microk8s https://canonical.com/microk8s
 or minikube https://minikube.sigs.k8s.io/
 or gke / aks / eks 
+
+```bash
+kubectl get nodes
+NAME        STATUS   ROLES           AGE   VERSION
+skilganon   Ready    control-plane   77d   v1.35.4+k3s1
+```
 
 Helm is a Kubernetes Package Manager.  => https://helm.sh/
 https://helm.sh/docs/intro/install
